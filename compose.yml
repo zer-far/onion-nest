@@ -41,7 +41,7 @@ services:
    restart: unless-stopped
 
 networks:
-  mynetwork:
+  tor_network:
     driver: bridge
     ipam:
       config:
