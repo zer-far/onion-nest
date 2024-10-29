@@ -1,0 +1,48 @@
+services:
+  tor:
+    build: .
+    volumes:
+      - ./tor:/etc/tor
+      - ./onion:/var/lib/tor/onion
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    cap_add:
+      - NET_BIND_SERVICE
+    depends_on:
+      - caddy
+    network_mode: "service:gluetun"
+    restart: unless-stopped
+
+  caddy:
+    image: caddy:latest
+    volumes:
+      - ./www:/var/www
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    networks:
+      tor_network:
+        ipv4_address: 172.18.0.22
+    restart: unless-stopped
+
+  gluetun:
+   image: qmcgaw/gluetun
+   cap_add:
+     - NET_ADMIN
+   environment:
+   # https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers
+     - VPN_SERVICE_PROVIDER=${VPN_SERVICE_PROVIDER}
+     - OPENVPN_USER=${OPENVPN_USER}
+     - OPENVPN_PASSWORD=${OPENVPN_PASSWORD}
+   devices:
+     - /dev/net/tun:/dev/net/tun
+   networks:
+     - tor_network
+   restart: unless-stopped
+
+networks:
+  mynetwork:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16
