@@ -21,7 +21,7 @@ git clone https://github.com/zer-far/onion-nest
 cd onion-nest
 ```
 2. **Modify environment variables.**
-- Set up a VPN connection by following the instructions for you provider in the [Gluetun Wiki](https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers).
+- Set up a VPN connection by following the instructions for your provider in the [Gluetun Wiki](https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers).
 3. **Build and run the containers.**
 ```bash
 docker compose -f compose.yml up -d --build
