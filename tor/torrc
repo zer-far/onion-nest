@@ -1,0 +1,2 @@
+HiddenServiceDir /var/lib/tor/onion/onion_service/
+HiddenServicePort 80 172.18.0.22:80
