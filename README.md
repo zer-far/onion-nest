@@ -12,7 +12,6 @@ Docker is used to run:
 ### Prerequisites
 - Docker
 - Git
-- Familiarity with basic command-line operations.
 
 ### Instructions
 1. **Clone the repository.**
@@ -21,7 +20,7 @@ git clone https://github.com/zer-far/onion-nest
 cd onion-nest
 ```
 2. **Modify environment variables.**
-- Set up a VPN connection by following the instructions for your provider in the [Gluetun Wiki](https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers).
+- Set up a VPN connection by configuring the template for your provider in the [Gluetun Wiki](https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers).
 3. **Build and run the containers.**
 ```bash
 docker compose -f compose.yml up -d --build
